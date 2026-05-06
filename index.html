@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Academy | Plataforma Tecnológica</title>
+    <!-- Bootstrap 5 CSS + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #f0f5fe 0%, #e9f0fa 100%);
+            color: #1a2c3e;
+            overflow-x: hidden;
+        }
+
+        /* Paleta Azul Ejecutiva */
+        :root {
+            --blue-deep: #0a2540;
+            --blue-primary: #0066cc;
+            --blue-ocean: #1e88e5;
+            --blue-sky: #40a9ff;
+            --blue-mist: #b8d9ff;
+            --blue-glow: rgba(30, 136, 229, 0.2);
+        }
+
+        /* Navbar moderna */
+        .navbar {
+            background: rgba(10, 37, 64, 0.92);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-bottom: 1px solid rgba(64, 169, 255, 0.2);
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.8rem;
+            background: linear-gradient(135deg, #ffffff, #a0c8ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+        .nav-link {
+            font-weight: 500;
+            color: #eef5ff !important;
+            margin: 0 0.5rem;
+            transition: 0.2s;
+        }
+        .nav-link:hover {
+            color: var(--blue-sky) !important;
+            transform: translateY(-1px);
+        }
+        .btn-outline-light {
+            border-radius: 40px;
+            padding: 0.4rem 1.2rem;
+            font-weight: 500;
+            border-color: rgba(255,255,255,0.4);
+        }
+
+        /* Hero Section - degradado azul Impacto */
+        .hero {
+            background: linear-gradient(125deg, #0a2b44 0%, #0f3b5e 35%, #1a5d8f 100%);
+            border-radius: 0 0 3rem 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: -30%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(64,169,255,0.2) 0%, rgba(0,102,204,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        .hero-title {
+            font-weight: 800;
+            font-size: 3.2rem;
+            background: linear-gradient(115deg, #fff, #9acdff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: fadeUp 0.6s ease;
+        }
+        .hero-sub {
+            font-size: 1.2rem;
+            color: #cfe6ff;
+            border-left: 4px solid var(--blue-sky);
+            padding-left: 1.2rem;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Cards de categorías */
+        .cat-card {
+            background: white;
+            border: none;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            transition: all 0.25s ease-in-out;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.02), 0 6px 6px rgba(0,0,0,0.03);
+            height: 100%;
+            cursor: pointer;
+        }
+        .cat-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px -12px rgba(0,102,204,0.25);
+            border-bottom: 2px solid var(--blue-primary);
+        }
+        .icon-circle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, var(--blue-mist), #e2edff);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.3rem;
+        }
+        .icon-circle i {
+            font-size: 2rem;
+            color: var(--blue-primary);
+        }
+        .badge-tech {
+            background: #e9f0fe;
+            color: #0a5b9e;
+            border-radius: 40px;
+            font-weight: 500;
+            padding: 0.3rem 0.9rem;
+            font-size: 0.75rem;
+        }
+
+        /* Cursos destacados */
+        .course-card {
+            background: #ffffffdd;
+            backdrop-filter: blur(4px);
+            border-radius: 1.2rem;
+            border: 1px solid rgba(30,136,229,0.2);
+            transition: 0.2s;
+            overflow: hidden;
+        }
+        .course-card:hover {
+            background: white;
+            border-color: var(--blue-sky);
+            transform: scale(1.01);
+        }
+        .btn-primary-custom {
+            background: var(--blue-primary);
+            border: none;
+            border-radius: 60px;
+            padding: 0.5rem 1.6rem;
+            font-weight: 600;
+            transition: 0.2s;
+        }
+        .btn-primary-custom:hover {
+            background: #0a5bb5;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 18px -8px var(--blue-primary);
+        }
+        footer {
+            background: #0a2540;
+            color: #b9d6ff;
+            border-top: 1px solid #1c4468;
+        }
+        .section-title {
+            font-weight: 700;
+            color: #0a2b44;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-sky));
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">ACADEMY</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <li class="nav-item"><a class="nav-link active" href="#">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Cursos</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-person-circle"></i> Mi cuenta</a></li>
+                <li class="nav-item ms-lg-2"><a class="btn btn-outline-light" href="#">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero pt-5 mt-5">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-7 text-white">
+                <h1 class="hero-title mb-3">Domina Python, Web<br>y Bases de Datos</h1>
+                <p class="hero-sub mb-4">Cursos intensivos, comunidad tech & blog especializado. Aprende con el mejor ecosistema tecnológico.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <button class="btn btn-primary btn-lg rounded-pill px-4" style="background: #0e6bcb; border: none;">Explorar cursos <i class="bi bi-arrow-right-short"></i></button>
+                    <button class="btn btn-outline-light btn-lg rounded-pill px-4">Contenido gratuito</button>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block text-end">
+                <i class="bi bi-code-slash" style="font-size: 8rem; color: rgba(255,255,255,0.2);"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categorías principales (Grupos de cursos) -->
+<div class="container mt-5 pt-3">
+    <div class="row mb-4">
+        <div class="col text-center">
+            <h2 class="section-title">Categorías de aprendizaje</h2>
+            <p class="text-muted mt-3">Selecciona un stack y comienza tu ruta profesional</p>
+        </div>
+    </div>
+    <div class="row g-4" id="categoriasContainer">
+        <!-- Las categorías se cargarán con JavaScript simulando datos -->
+    </div>
+</div>
+
+<!-- Cursos Destacados -->
+<div class="container my-5 py-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col">
+            <h2 class="section-title">Cursos destacados</h2>
+        </div>
+        <div class="col text-end">
+            <a href="#" class="text-decoration-none" style="color: var(--blue-primary);">Ver todos →</a>
+        </div>
+    </div>
+    <div class="row g-4" id="cursosDestacadosContainer">
+        <!-- JS dinámico -->
+    </div>
+</div>
+
+<!-- Call to Action Login / Comunidad -->
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="p-5 rounded-4 text-center" style="background: linear-gradient(115deg, #eef4ff, #ffffff); border: 1px solid #cce4ff;">
+                <i class="bi bi-people-fill" style="font-size: 2.5rem; color: var(--blue-primary);"></i>
+                <h3 class="mt-3 fw-bold">Accede a tu zona privada</h3>
+                <p class="text-secondary">Guarda tu progreso, accede a contenido exclusivo y participa en la comunidad.</p>
+                <button class="btn btn-primary-custom btn-lg mt-2 px-5" id="btnLoginDemo"><i class="bi bi-box-arrow-in-right"></i> Crear cuenta / Login</button>
+                <p class="small text-muted mt-3">*Solo con registro podrás marcar cursos como completados y comentar en el blog.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="pt-5 pb-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5 class="fw-bold text-white">Academy</h5>
+                <p>Plataforma educativa de código abierto. Cursos de Python, desarrollo web y bases de datos SQL.</p>
+            </div>
+            <div class="col-md-2">
+                <h6>Recursos</h6>
+                <ul class="list-unstyled"><li><a href="#" class="text-decoration-none text-light-emphasis">Cursos</a></li><li><a href="#" class="text-decoration-none text-light-emphasis">Blog técnico</a></li><li><a href="#" class="text-decoration-none text-light-emphasis">Comunidad</a></li></ul>
+            </div>
+            <div class="col-md-2">
+                <h6>Soporte</h6>
+                <ul class="list-unstyled"><li><a href="#" class="text-decoration-none text-light-emphasis">FAQ</a></li><li><a href="#" class="text-decoration-none text-light-emphasis">Contacto</a></li></ul>
+            </div>
+            <div class="col-md-4">
+                <h6>Síguenos</h6>
+                <div class="d-flex gap-3 fs-4"><i class="bi bi-github"></i><i class="bi bi-twitter-x"></i><i class="bi bi-linkedin"></i></div>
+            </div>
+        </div>
+        <hr class="mt-4 opacity-25">
+        <div class="text-center small">© 2026 NeuralDevs Academy — Construyendo conocimiento tecnológico.</div>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Datos simulados (Vanilla JS) para construir las categorías y cursos destacados
+    // COHERE: Grupos de cursos: Python, Web, Bases de Datos Relacionales
+    const categorias = [
+        { id: 1, nombre: "🐍 Python y su ecosistema", desc: "Desde fundamentos hasta IA y Data Science.", icono: "bi-filetype-py", color: "#306998" },
+        { id: 2, nombre: "🌐 Desarrollo Web", desc: "HTML, CSS, JavaScript, Bootstrap y más.", icono: "bi-browser-chrome", color: "#0066cc" },
+        { id: 3, nombre: "🗄️ Bases de Datos Relacionales", desc: "PostgreSQL, MySQL, MariaDB, SQL Server.", icono: "bi-database", color: "#1e6d8f" },
+        { id: 4, nombre: "⚙️ Herramientas & DevOps", desc: "Git, Docker, Testing, CI/CD para profesionales.", icono: "bi-gear-wide-connected", color: "#306998" }
+    ];
+
+    const cursosDestacados = [
+        { titulo: "Python Avanzado: Decoradores", stack: "Python", duracion: "12h", nivel: "Intermedio", imgIcon: "bi-filetype-py" },
+        { titulo: "PostgreSQL Mastery", stack: "Bases de Datos", duracion: "18h", nivel: "Avanzado", imgIcon: "bi-database" },
+        { titulo: "JavaScript + Bootstrap 5", stack: "Frontend", duracion: "10h", nivel: "Principiante", imgIcon: "bi-bootstrap" },
+        { titulo: "SQL Server desde cero", stack: "Bases de Datos", duracion: "15h", nivel: "Principiante", imgIcon: "bi-database-fill" }
+    ];
+
+    function renderCategorias() {
+        const container = document.getElementById('categoriasContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        categorias.forEach(cat => {
+            const col = document.createElement('div');
+            col.className = 'col-md-6 col-lg-3';
+            col.innerHTML = `
+                <div class="cat-card">
+                    <div class="icon-circle"><i class="bi ${cat.icono}" style="font-size:2rem;"></i></div>
+                    <h5 class="fw-bold">${cat.nombre}</h5>
+                    <p class="text-secondary small">${cat.desc}</p>
+                    <span class="badge-tech">+8 cursos</span>
+                </div>
+            `;
+            container.appendChild(col);
+        });
+    }
+
+    function renderCursos() {
+        const container = document.getElementById('cursosDestacadosContainer');
+        if(!container) return;
+        container.innerHTML = '';
+        cursosDestacados.forEach(curso => {
+            const col = document.createElement('div');
+            col.className = 'col-md-6 col-lg-3';
+            col.innerHTML = `
+                <div class="course-card p-3">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <i class="bi ${curso.imgIcon} fs-2" style="color: var(--blue-primary);"></i>
+                        <span class="badge bg-light text-dark rounded-pill">${curso.nivel}</span>
+                    </div>
+                    <h6 class="fw-bold">${curso.titulo}</h6>
+                    <p class="small text-secondary m-0">${curso.stack} • ${curso.duracion}</p>
+                    <hr class="my-2">
+                    <button class="btn btn-sm btn-outline-primary rounded-pill w-100">Ver curso <i class="bi bi-arrow-right-circle"></i></button>
+                </div>
+            `;
+            container.appendChild(col);
+        });
+    }
+
+    // Simulación de click demo del login (sin backend, solo aviso)
+    document.getElementById('btnLoginDemo')?.addEventListener('click', () => {
+        alert("🚀 Próximamente: Autenticación con Firebase. Podrás registrarte y acceder a tu panel personal.");
+    });
+
+    renderCategorias();
+    renderCursos();
+</script>
+</body>
+</html>
